@@ -8,7 +8,7 @@
   <include package="z3c.jbot" file="meta.zcml" />
   <browser:jbot
       directory="overrides"
-      layer="pas.plugins.identitymanager.interfaces.IPasPluginsIdentitymanagerLayer"
+      layer="pas.plugins.identitymanager.interfaces.IIdentityManagerLayer"
       />
 
   <!-- Publish static files -->
@@ -16,5 +16,36 @@
       name="pas.plugins.identitymanager"
       directory="static"
       />
+  
+   <browser:page
+      name="authomatic-membrane-settings"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      class=".controlpanel.membrane.ProfileRegistrationFormView"
+      permission="cmf.ManagePortal"
+      />
+  
+   <browser:page
+      name="external-login-settings"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      class=".controlpanel.extlogin.ExternalLoginFormView"
+      permission="cmf.ManagePortal"
+      />
+
+  <browser:page
+    for="plone.app.layout.navigation.interfaces.INavigationRoot"
+    name="profile-registration"
+    layer="pas.plugins.identitymanager.interfaces.IIdentityManagerLayer"
+    class=".view.MemberRegistrationForm"
+    permission="zope2.View"
+    />
+
+  <browser:page
+    for="plone.app.layout.navigation.interfaces.INavigationRoot"
+    name="login_success"
+    layer="pas.plugins.identitymanager.interfaces.IIdentityManagerLayer"
+    class=".view.MemberRegistrationForm"
+    permission="zope2.View"
+    />
+  <adapter factory=".form.MemberRegistrationAdapter"/>
 
 </configure>

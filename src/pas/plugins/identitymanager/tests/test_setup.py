@@ -22,11 +22,11 @@ class TestSetup(unittest.TestCase):
             'pas.plugins.identitymanager'))
 
     def test_browserlayer(self):
-        """Test that IPasPluginsIdentitymanagerLayer is registered."""
+        """Test that IIdentityManagerLayer is registered."""
         from pas.plugins.identitymanager.interfaces import (
-            IPasPluginsIdentitymanagerLayer)
+            IIdentityManagerLayer)
         from plone.browserlayer import utils
-        self.assertIn(IPasPluginsIdentitymanagerLayer, utils.registered_layers())
+        self.assertIn(IIdentityManagerLayer, utils.registered_layers())
 
 
 class TestUninstall(unittest.TestCase):
@@ -44,7 +44,7 @@ class TestUninstall(unittest.TestCase):
             'pas.plugins.identitymanager'))
 
     def test_browserlayer_removed(self):
-        """Test that IPasPluginsIdentitymanagerLayer is removed."""
-        from pas.plugins.identitymanager.interfaces import IPasPluginsIdentitymanagerLayer
+        """Test that IIdentityManagerLayer is removed."""
+        from pas.plugins.identitymanager.interfaces import IIdentityManagerLayer
         from plone.browserlayer import utils
-        self.assertNotIn(IPasPluginsIdentitymanagerLayer, utils.registered_layers())
+        self.assertNotIn(IIdentityManagerLayer, utils.registered_layers())

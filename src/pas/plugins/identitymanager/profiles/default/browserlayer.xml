@@ -2,6 +2,6 @@
 <layers>
   <layer
       name="pas.plugins.identitymanager"
-      interface="pas.plugins.identitymanager.interfaces.IPasPluginsIdentitymanagerLayer"
+      interface="pas.plugins.identitymanager.interfaces.IIdentityManagerLayer"
       />
 </layers>
