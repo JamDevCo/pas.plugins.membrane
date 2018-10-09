@@ -47,5 +47,15 @@
     permission="zope2.View"
     />
   <adapter factory=".form.MemberRegistrationAdapter"/>
+  
+  
+  <browser:viewlet
+      name="pas.authomatic.identities"
+      manager="plone.app.layout.viewlets.interfaces.IBelowContent"
+      for="plone.app.layout.navigation.interfaces.INavigationRoot"
+      layer="pas.plugins.identitymanager.interfaces.IIdentityManagerLayer"
+      class=".viewlets.AuthomaticViewlet"
+      permission="zope2.View"
+      />
 
 </configure>
