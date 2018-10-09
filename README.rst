@@ -6,33 +6,14 @@
 pas.plugins.identitymanager
 ==============================================================================
 
-Tell me what your product does
+Manage Plone user indentities for OpenID, OAuth, OAuth2, Saml2 and more
 
 Features
 --------
 
-- Can be bullet points
-
-
-Examples
---------
-
-This add-on can be seen in action at the following sites:
-- Is there a page on the internet where everybody can see the features?
-
-
-Documentation
--------------
-
-Full documentation for end users can be found in the "docs" folder, and is also available online at http://docs.plone.org/foo/bar
-
-
-Translations
-------------
-
-This product has been translated into
-
-- Klingon (thanks, K'Plai)
+- Set which login redictor you wish to use. e.g. pas.plugins.authomatic or saml2
+- Disbale login redirector
+- Convert user identifies to members
 
 
 Installation
@@ -54,8 +35,8 @@ and then running ``bin/buildout``
 Contribute
 ----------
 
-- Issue Tracker: https://github.com/collective/pas.plugins.identitymanager/issues
-- Source Code: https://github.com/collective/pas.plugins.identitymanager
+- Issue Tracker: https://github.com/JamaicanDevelopers/pas.plugins.identitymanager/issues
+- Source Code: https://github.com/JamaicanDevelopers/pas.plugins.identitymanager
 - Documentation: https://docs.plone.org/foo/bar
 
 
