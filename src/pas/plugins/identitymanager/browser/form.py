@@ -12,21 +12,24 @@ from zope.interface import Invalid
 from zope.interface import invariant
 
 from Products.statusmessages.interfaces import IStatusMessage
-from pas.plugins.identitymanager import _
+from pas.plugins.identitymanager import _, utils
 
 
-class  IMemberRegistrationForm(IEmail):
-    first_name = schema.TextLine(
-        title=_(u"First Name")
-    )
-    last_name = schema.TextLine(
-        title=_(u"Last Name"),
+class  IMemberRegistrationForm(model.Schema):
+    
+    email = Email(
+        # String with validation in place looking for @, required.
+        # Note that a person's email address will be their username.
+        title=_(u'E-mail Address'),
+        required=True,
     )
     password = schema.Password(
-        title=_(u'Password')
+        title=_(u'Password'),
+        required=True
     )
     confirm_password = schema.Password(
-        title=_(u'Confirm Password')
+        title=_(u'Confirm Password'),
+        required=True
     )
     
     @invariant

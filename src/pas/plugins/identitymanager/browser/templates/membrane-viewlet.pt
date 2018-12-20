@@ -1,0 +1,5 @@
+<tal:block tal:condition="not:view/has_membrane|nothing">
+    <script >
+        location.assign("${view/registration_url}");
+    </script>
+</tal:block>

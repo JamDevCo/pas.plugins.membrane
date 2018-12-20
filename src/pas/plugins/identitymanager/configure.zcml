@@ -10,7 +10,6 @@
 
   <include package=".browser" />
 
-
   <genericsetup:registerProfile
       name="default"
       title="pas.plugins.identitymanager"

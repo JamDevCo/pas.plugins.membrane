@@ -1,7 +1,11 @@
-<div class="login-content-core" style="display: none">
+<div tal:condition="context/@@plone_portal_state/anonymous" class="login-content-core" style="background: #fcfcfd; max-width: 300px; margin: 0 auto 6px; padding: 6px 12px;
+    border: 1px solid #e5e5e5;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);">
     <div class="login-header">
         <tal:if tal:condition="view/is_anon">
-          <h4 class="login-header-title" i18n:translate="login_title">Log in with</h4>
+          <h4 class="login-header-title" i18n:translate="login_title">Log in with </h4>
         </tal:if>
         <tal:if tal:condition="not: view/is_anon">
           <h6 class="login-add-identity" i18n:translate="add_identity_title">Add identity</h6>
