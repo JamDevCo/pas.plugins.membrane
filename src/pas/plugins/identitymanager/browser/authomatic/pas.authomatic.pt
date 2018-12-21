@@ -1,21 +1,25 @@
-<div class="login-content-core" style="display: none">
+
+<div tal:condition="context/@@plone_portal_state/anonymous" class="login-content-core" >
     <div class="login-header">
         <tal:if tal:condition="view/is_anon">
-          <h4 class="login-header-title" i18n:translate="login_title">Log in with</h4>
+          <h4 class="login-header-title" i18n:translate="login_title">Login</h4>
         </tal:if>
         <tal:if tal:condition="not: view/is_anon">
-          <h6 class="login-add-identity" i18n:translate="add_identity_title">Add identity</h6>
+          <h6 class="login-add-identity" i18n:translate="add_identity_title">Connect</h6>
         </tal:if>
     </div>
     <tal:block tal:repeat="provider view/providers">
 
         <a tal:condition="not:provider/as_form"
-           tal:attributes="class string:${provider/buttonclasses};
+           tal:attributes="class string:${provider/buttonclasses} ${provider/title/lower} login-with;
                            href string:${context/absolute_url}/@@authomatic-handler/${provider/identifier}">
-            <span tal:attributes="class string:${provider/iconclasses}"></span>
-            <span tal:content="provider/title">
-                name of oauth provider
-            </span>
+            <span tal:attributes="class string:${python:provider['iconclasses'].replace('glypicon', 'fab').replace('glyphicon', 'fa')}"></span>
+            <tal:if tal:condition="view/is_anon">
+              <label class="login-header-title" i18n:translate="login_title">Login with ${provider/title/capitalize}</label>
+            </tal:if>
+            <tal:if tal:condition="not: view/is_anon">
+              <label class="login-add-identity" i18n:translate="add_identity_title">Link your ${provider/title/capitalize} Account</label>
+            </tal:if>
         </a>
 
         <form tal:condition="provider/as_form"

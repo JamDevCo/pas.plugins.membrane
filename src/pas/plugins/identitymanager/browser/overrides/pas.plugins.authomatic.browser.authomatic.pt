@@ -1,0 +1,55 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      i18n:domain="pas.plugins.authomatic"
+      metal:use-macro="context/main_template/macros/master">
+
+    <metal:block fill-slot="main">
+        
+        
+        <div class="login-content-core">
+            <div class="login-header">
+                <tal:if tal:condition="view/is_anon">
+                  <h4 class="login-header-title" i18n:translate="login_title">Login</h4>
+                </tal:if>
+                <tal:if tal:condition="not: view/is_anon">
+                  <h6 class="login-add-identity" i18n:translate="add_identity_title">Connect</h6>
+                </tal:if>
+            </div>
+            <tal:block tal:repeat="provider view/providers">
+        
+                <a tal:condition="not:provider/as_form"
+                   tal:attributes="class string:${provider/buttonclasses} ${provider/title/lower} login-with;
+                                   href string:${context/absolute_url}/@@authomatic-handler/${provider/identifier}">
+                    <span tal:attributes="class string:${python:provider['iconclasses'].replace('glypicon', 'fab').replace('glyphicon', 'fa')}"></span>
+                    <tal:if tal:condition="view/is_anon">
+                      <label class="login-header-title" i18n:translate="login_title">Login with ${provider/title/capitalize}</label>
+                    </tal:if>
+                    <tal:if tal:condition="not: view/is_anon">
+                      <label class="login-add-identity" i18n:translate="add_identity_title">Link your ${provider/title/capitalize} Account</label>
+                    </tal:if>
+                </a>
+        
+                <form tal:condition="provider/as_form"
+                      tal:attributes="action string:${context/absolute_url}/@@authomatic-handler/${provider/identifier};"
+                      class="authomatic-handler-form">
+                    <input
+                        type="text"
+                        placeholder="Your claimed ID"
+                        name="id"
+                        tal:attributes="class string:${provider/iconclasses}"
+                    />
+                    <input
+                        type="submit"
+                        value="Authenticate"
+                        tal:attributes="class string:${provider/buttonclasses};
+                                        value: provider/title"
+                    />
+                </form>
+        
+            </tal:block>
+        </div>
+
+    </metal:block>
+
+</html>
