@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Installer for the pas.plugins.identitymanager package."""
+"""Installer for the pas.plugins.membrane package."""
 
 from setuptools import find_packages
 from setuptools import setup
@@ -13,9 +13,10 @@ long_description = '\n\n'.join([
 
 
 setup(
-    name='pas.plugins.identitymanager',
+    name='pas.plugins.membrane',
     version='1.0a1',
-    description="Manage Plone user indentities for OpenID, OAuth, OAuth2, Saml2 and more",
+    description=("Manage and Create membrane users from ACL users and OpenID, "
+                 "OAuth, OAuth2 and Saml2 identities"),
     long_description=long_description,
     # Get more from https://pypi.python.org/pypi?%3Aaction=list_classifiers
     classifiers=[
@@ -27,10 +28,10 @@ setup(
         "Operating System :: OS Independent",
         "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
     ],
-    keywords='Python Plone',
+    keywords='Python Plone PAS OAuth dexterity membrane',
     author='Oshane Bailey',
     author_email='b4.oshany@gmail.com',
-    url='https://pypi.python.org/pypi/pas.plugins.identitymanager',
+    url='https://pypi.python.org/pypi/pas.plugins.membrane',
     license='GPL version 2',
     packages=find_packages('src', exclude=['ez_setup']),
     namespace_packages=['pas', 'pas.plugins'],

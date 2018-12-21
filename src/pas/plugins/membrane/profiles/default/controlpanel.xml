@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<object
+    name="portal_controlpanel"
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    i18n:domain="pas.plugins.membrane">
+
+    <configlet
+        title="PAS Authomatic Membrane Settings"
+        action_id="authomatic.profile"
+        appId="pas.plugins.membrane"
+        category="plone-users"
+        condition_expr=""
+        url_expr="string:${portal_url}/@@authomatic-membrane-settings"
+        icon_expr="string:$portal_url/group.png"
+        visible="True"
+        i18n:attributes="title">
+            <permission>Manage portal</permission>
+    </configlet>
+
+    <configlet
+        title="PAS External Login Settings"
+        action_id="external.login.profile"
+        appId="pas.plugins.membrane"
+        category="plone-users"
+        condition_expr=""
+        url_expr="string:${portal_url}/@@external-login-settings"
+        icon_expr="string:$portal_url/group.png"
+        visible="True"
+        i18n:attributes="title">
+            <permission>Manage portal</permission>
+    </configlet>
+
+</object>

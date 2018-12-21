@@ -1,4 +1,4 @@
-pas.plugins.identitymanager Copyright 2018, Oshane Bailey
+pas.plugins.membrane Copyright 2018, Oshane Bailey
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License version 2

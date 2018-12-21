@@ -1,0 +1,24 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="pas.plugins.membrane">
+
+  <browser:viewlet
+      name="pas.auth.id"
+      manager="plone.app.layout.viewlets.interfaces.IAboveContent"
+      for="plone.app.layout.navigation.interfaces.INavigationRoot"
+      layer="pas.plugins.membrane.interfaces.ImembraneLayer"
+      class=".viewlets.AuthomaticViewlet"
+      permission="pasid.Anonymous"
+      />
+
+  <browser:page
+    name="user-identities"
+    for="plone.app.layout.navigation.interfaces.INavigationRoot"
+    layer="pas.plugins.membrane.interfaces.ImembraneLayer"
+    class=".views.AuthomaticIndentityView"
+    permission="plone.ShowToolbar"
+    />
+
+</configure>

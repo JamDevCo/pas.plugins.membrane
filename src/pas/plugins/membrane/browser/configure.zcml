@@ -1,0 +1,68 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
+    i18n_domain="pas.plugins.membrane">
+  
+  <permission
+    id="pasid.Anonymous"
+    title="Anonymous User" />
+
+  <!-- Set overrides folder for Just-a-Bunch-Of-Templates product -->
+  <include package="z3c.jbot" file="meta.zcml" />
+  <include package=".authomatic" zcml:condition="have pas.plugins.authomatic" />
+  
+  <browser:jbot
+      directory="overrides"
+      layer="pas.plugins.membrane.interfaces.ImembraneLayer"
+      />
+
+  <!-- Publish static files -->
+  <browser:resourceDirectory
+      name="pas.plugins.membrane"
+      directory="static"
+      />
+  
+   <browser:page
+      name="authomatic-membrane-settings"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      class=".controlpanel.membrane.ProfileRegistrationFormView"
+      permission="cmf.ManagePortal"
+      />
+  
+   <browser:page
+      name="external-login-settings"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      class=".controlpanel.extlogin.ExternalLoginFormView"
+      permission="cmf.ManagePortal"
+      />
+
+  <browser:page
+    for="plone.app.layout.navigation.interfaces.INavigationRoot"
+    name="profile-registration"
+    layer="pas.plugins.membrane.interfaces.ImembraneLayer"
+    class=".view.MemberRegistrationForm"
+    permission="plone.ShowToolbar"
+    />
+
+  <browser:page
+    for="plone.app.layout.navigation.interfaces.INavigationRoot"
+    name="login_success"
+    layer="pas.plugins.membrane.interfaces.ImembraneLayer"
+    class=".view.MemberRegistrationForm"
+    permission="zope2.View"
+    />
+    
+  <adapter factory=".form.MemberRegistrationAdapter"/>
+
+  <browser:viewlet
+      name="pas.auth.id.register"
+      manager="plone.app.layout.viewlets.interfaces.IBelowContent"
+      for="plone.app.layout.navigation.interfaces.INavigationRoot"
+      layer="pas.plugins.membrane.interfaces.ImembraneLayer"
+      class=".viewletmanager.SuccessfulLoginViewlet"
+      permission="plone.ShowToolbar"
+      />
+      
+</configure>
