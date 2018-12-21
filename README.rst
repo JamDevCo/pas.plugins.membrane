@@ -13,8 +13,8 @@ This add-on allows users to register membrane content or profile upon successful
 Features
 --------
 
-- Set which login redirector you wish to use. e.g. pas.plugins.authomatic or saml2
-- Ability to disable the overriding and redirection from the login page by pas.plugins.authomatic and other external logins
+- Set which login redirector you wish to use. e.g. pas.plugins.authomatic_ or saml2
+- Ability to disable the overriding and redirection from the login page by pas.plugins.authomatic_ and other external logins
 - Allow the embedding of external login views on the login page with the login form via viewlet.
 - Map authmoatic acl_user identities to membrane users
 - Map acl_users to membrane users
@@ -55,3 +55,6 @@ License
 -------
 
 The project is licensed under the GPLv2.
+
+
+.. _pas.plugins.authomatic: https://github.com/collective/pas.plugins.authomatic
