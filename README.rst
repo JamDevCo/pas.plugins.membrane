@@ -3,7 +3,7 @@
    This text does not appear on pypi or github. It is a comment.
 
 ==============================================================================
-pas.plugins.identitymanager
+pas.plugins.membrane
 ==============================================================================
 
 Tell me what your product does
@@ -38,14 +38,14 @@ This product has been translated into
 Installation
 ------------
 
-Install pas.plugins.identitymanager by adding it to your buildout::
+Install pas.plugins.membrane by adding it to your buildout::
 
     [buildout]
 
     ...
 
     eggs =
-        pas.plugins.identitymanager
+        pas.plugins.membrane
 
 
 and then running ``bin/buildout``
@@ -54,8 +54,8 @@ and then running ``bin/buildout``
 Contribute
 ----------
 
-- Issue Tracker: https://github.com/collective/pas.plugins.identitymanager/issues
-- Source Code: https://github.com/collective/pas.plugins.identitymanager
+- Issue Tracker: https://github.com/collective/pas.plugins.membrane/issues
+- Source Code: https://github.com/collective/pas.plugins.membrane
 - Documentation: https://docs.plone.org/foo/bar
 
 

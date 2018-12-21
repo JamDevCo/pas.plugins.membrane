@@ -1,5 +1,5 @@
 ====================
-pas.plugins.identitymanager
+pas.plugins.membrane
 ====================
 
 User documentation
