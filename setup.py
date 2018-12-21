@@ -15,7 +15,7 @@ long_description = '\n\n'.join([
 setup(
     name='pas.plugins.membrane',
     version='1.0a1',
-    description=("Manage and Create membrane users from ACL users and OpenID, "
+    description=("Create and manage membrane users from ACL users and OpenID, "
                  "OAuth, OAuth2 and Saml2 identities"),
     long_description=long_description,
     # Get more from https://pypi.python.org/pypi?%3Aaction=list_classifiers
@@ -39,14 +39,16 @@ setup(
     include_package_data=True,
     zip_safe=False,
     install_requires=[
+        'collective.fontawesome>=1.0.3',
+        'dexterity.membrane',
         'plone.api',
         'Products.GenericSetup>=1.8.2',
         'setuptools',
-        'z3c.jbot',
-        'collective.fontawesome>=1.0.3'
+        'z3c.jbot'
     ],
     extras_require={
         'test': [
+            'mock',
             'plone.app.testing',
             # Plone KGS does not use this version, because it would break
             # Remove if your package shall be part of coredev.
