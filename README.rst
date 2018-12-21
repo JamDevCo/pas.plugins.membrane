@@ -6,14 +6,18 @@
 pas.plugins.membrane
 ==============================================================================
 
-Manage Plone user indentities for OpenID, OAuth, OAuth2, Saml2 and more
+Create and manage membrane users from ACL users and OpenID, OAuth, OAuth2 and Saml2 identities.
+
+This add-on allows users to register membrane content or profile upon successfully logging into the Plone site.
 
 Features
 --------
 
-- Set which login redictor you wish to use. e.g. pas.plugins.authomatic or saml2
-- Disbale login redirector
-- Convert user identifies to members
+- Set which login redirector you wish to use. e.g. pas.plugins.authomatic or saml2
+- Ability to disable the overriding and redirection from the login page by pas.plugins.authomatic and other external logins
+- Allow the embedding of external login views on the login page with the login form via viewlet.
+- Map authmoatic acl_user identities to membrane users
+- Map acl_users to membrane users
 
 
 Installation
