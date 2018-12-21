@@ -53,10 +53,15 @@ class MemberRegistrationForm(AutoExtensibleForm, form.Form):
         super(MemberRegistrationForm, self).update()
         
     @property
-    def membrane_type(self):
+    def membrane_settings(self):
         registry = getUtility(IRegistry)
         return registry.get(
             'pas.authomatic.membrane.membrane_type', 'Member'
+        ), registry.get(
+            'pas.authomatic.membrane.membrane_role', 'Member'
+        ), registry.get(
+            ('dexterity.membrane.behavior.settings.'
+             'IDexterityMembraneSettings.use_uuid_as_userid'), True
         )
 
     @button.buttonAndHandler(_(u'Register'), name='save')
@@ -108,6 +113,8 @@ class MemberRegistrationForm(AutoExtensibleForm, form.Form):
                 if not context:
                     context = self.context
                     base_path = ''
+                if not self.use_uuid_as_userid:
+                    name = self.userID
                 try:
                     user_profile = api.content.create(
                         type=self.membrane_type,
@@ -118,10 +125,16 @@ class MemberRegistrationForm(AutoExtensibleForm, form.Form):
                         email=self.email,
                         password=password,
                         safe_id=True,
-                        **{"_plone.uuid": self.userID}
+                        **{
+                            "_plone.uuid": self.getUserId()
+                        }
                     )
                     api.content.transition(
                         user_profile, transition='approve'
+                    )
+                    api.user.grant_roles(
+                        user=self.identity_current_user,
+                        roles=tuple(set(('Member', self.membrane_role)))
                     )
                     self.membranes = \
                         get_brains_for_email(self.context, self.email)
@@ -155,7 +168,7 @@ class MemberRegistrationForm(AutoExtensibleForm, form.Form):
                 user_id = membrane.getUserId
                 base_membrane = membrane
                 user_url = "{}/edit".format(membrane_obj.absolute_url())
-            if membrane.getUserId == self.userID:
+            if membrane.getUserId in (self.userID, self.email):
                 self.request.response.redirect(self.came_from)
                 return
             annotations = IAnnotations(membrane_obj)
@@ -201,22 +214,30 @@ class MemberRegistrationForm(AutoExtensibleForm, form.Form):
             "*" * num_hide_root,
             domain
         )
+        
+    def getUserId(self, use_uuid=False):
+        if self.use_uuid_as_userid or use_uuid:
+            return self.identity_current_user.getUserId()
+        else:
+            return self.email
+        
     
     def __call__(self, **kwargs):
         
         self.identity_current_user = api.user.get_current()
         self.email = self.identity_current_user.getProperty('email')
-        self.providers = utils.getProvidersForUser(self.identity_current_user)
-        self.membranes = get_brains_for_email(self.context, self.email)
         self.came_from = self.request.form.get(
             'came_from',
             None
         )
         if not self.came_from or utils.inTemplateID(self, LOGIN_TEMPLATE_IDS):
             self.came_from = self.context.absolute_url()
+
+        self.membrane_type, self.membrane_role, self.use_uuid_as_userid = \
+            self.membrane_settings
             
         try:
-            self.userID = self.identity_current_user.getUserId()
+            self.userID = self.getUserId(True)
         except AttributeError:
             IStatusMessage(self.request).addStatusMessage(
                 _(u"Please note, only non-superusers are allowed to have "
@@ -226,9 +247,11 @@ class MemberRegistrationForm(AutoExtensibleForm, form.Form):
             self.request.response.redirect(self.came_from)
             return
         
+        self.providers = utils.getProvidersForUser(self.identity_current_user)
+        self.membranes = get_brains_for_email(self.context, self.email)
+        
         if len(self.membranes) > 0:
             self.apply_identity_membrane()
             return
-            
         return super(MemberRegistrationForm, self).__call__(**kwargs)
         

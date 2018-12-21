@@ -17,15 +17,16 @@ class IProfileRegistration(form.Schema):
     membrane_role = schema.Choice(
         title=_(u'Role for dexterity.membrane Member'),
         description=_(
-            u'help_memberance',
+            u'help_memberane_role',
             default=_(
                 u'Select the role, which a user must have to create '
                 u'a profile on your site. Whenever a user logs in, who does '
                 u'not have the selected role, they will be redirected to '
-                u'${navigational_url}/profile-registration')
+                u'${navigational_url}/profile-registration. '
+                u'Please note, the Member role will be added to the membrane '
+                u'user in addition to selected the selected role.')
         ),
         required=False,
-        default=u'Member',
         missing_value=u'',
         vocabulary='plone.app.vocabularies.Roles'
     )
@@ -33,7 +34,6 @@ class IProfileRegistration(form.Schema):
         title=_(u'Select the content type, which your '
                 u'dexterity.membrane.Member objects are using '),
         required=False,
-        default=u'Member',
         missing_value=u'',
         vocabulary='plone.app.vocabularies.PortalTypes'
     )
@@ -73,7 +73,7 @@ class ProfileRegistrationForm(RegistryEditForm):
             data = super(ProfileRegistrationForm, self).getContent()
         except KeyError:
             data =  {
-                'membrane_role': u'Member',
+                'membrane_role': u'',
                 'welcome_message': u'',
                 'custom_redirect_path': u'',
                 'membrane_type': u''

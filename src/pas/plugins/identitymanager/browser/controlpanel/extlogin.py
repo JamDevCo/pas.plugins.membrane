@@ -19,7 +19,9 @@ from pas.plugins.identitymanager import _
 class IExternalLogin(form.Schema):
 
     disable_external_login_url = schema.Bool(
-        title=_(u'Disable external login'),
+        title=_(u'Embed external login on the default login page'),
+        description=_(u'If enabled, then all external login will be embed '
+                      u'on the login form page.'),
         required=True,
         default=False,
     )

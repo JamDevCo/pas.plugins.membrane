@@ -23,6 +23,15 @@ class  IMemberRegistrationForm(model.Schema):
         title=_(u'E-mail Address'),
         required=True,
     )
+    
+    first_name = schema.TextLine(
+        title=_(u"First Name"),
+        required=True
+    )
+    last_name = schema.TextLine(
+        title=_(u"Last Name"),
+        required=True
+    )
     password = schema.Password(
         title=_(u'Password'),
         required=True

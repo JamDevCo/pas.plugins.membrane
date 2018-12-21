@@ -1,0 +1,159 @@
+.login-content-core {
+  background: #fcfcfd;
+  max-width: 500px;
+  margin: 0 auto 6px;
+  padding: 6px 12px 20px;
+  border: 1px solid #e5e5e5;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  text-align: center;
+}
+.login-with {
+  display: inline-block !important;
+  transition: all 0.5s ease-out;
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -ms-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+  width: 100%;
+  max-width: 300px;
+  /*-----facebook-----*/
+  /*----linkedin-------*/
+  /*--tumblr------*/
+  /*--space----*/
+  /*--google-------*/
+  /*--twitter-----*/
+  /*--delicious--------*/
+  /*----email-------*/
+  /*--flicker------*/
+  /*-----github-------*/
+  /*-----start-responsive-design------*/
+}
+.login-with * {
+  text-align: center;
+  display: inline-block;
+  cursor: pointer;
+  margin: 0;
+  font-size: 17px;
+  vertical-align: middle;
+  color: #fff;
+}
+.login-with label {
+  font-size: 17px;
+  width: 89%;
+}
+.login-with span {
+  width: 10%;
+}
+.login-with.facebook {
+  background: #3c66c4;
+  border: none;
+  outline: none;
+}
+.login-with.facebook:hover {
+  background: #315997;
+}
+.login-with.facebook label {
+  border-left: 1px solid rgba(39, 74, 153, 0.29);
+}
+.login-with.facebook:hover {
+  background: #335FA4;
+}
+.login-with.linkedin label {
+  border-left: 1px solid rgba(39, 74, 153, 0.29);
+}
+.login-with.linkedin {
+  background: #0086b6;
+}
+.login-with.linkedin:hover {
+  background: #0e7498;
+}
+.login-with.tumblr {
+  background: #9bb8d2;
+}
+.login-with.tumblr label {
+  border-left: 1px solid rgba(143, 174, 201, 0.74);
+}
+.login-with.tumblr:hover {
+  background: #8098ae;
+}
+.login-with.space {
+  background: #a7a5a2;
+}
+.login-with.space label {
+  color: #fff;
+}
+.login-with.space:hover {
+  background: #7e7d7d;
+}
+.login-with.google label {
+  border-left: 1px solid rgba(155, 38, 23, 0.46);
+}
+.login-with.google {
+  background: #cf4332;
+}
+.login-with.google:hover {
+  background: #bb3828;
+}
+.login-with.twitter label {
+  border-left: 1px solid rgba(33, 174, 221, 0.38);
+}
+.login-with.twitter {
+  background: #33ccff;
+}
+.login-with.twitter:hover {
+  background: #29A6D0;
+}
+.login-with.delicious {
+  background: #2f6abe;
+}
+.login-with.delicious:hover {
+  background: #1e57a8;
+}
+.login-with.delicious label {
+  border-left: 1px solid rgba(33, 174, 221, 0.38);
+}
+.login-with.email {
+  background: #4580a6;
+}
+.login-with.email:hover {
+  background: #376A8A;
+}
+.login-with.email label {
+  border-left: 1px solid rgba(39, 74, 153, 0.29);
+}
+.login-with.flicker label {
+  border-left: 1px solid #c3c2c0;
+}
+.login-with.flicker {
+  background: #d1d0cf;
+}
+.login-with.flicker:hover {
+  background: #bebdbb;
+}
+.login-with.github {
+  background: #545454;
+}
+.login-with.github:hover {
+  background: #454444;
+}
+.login-with.github label {
+  border-left: 1px solid #4c4a4a;
+}
+@media (max-width: 768px) {
+  .login-with label {
+    font-size: 16px;
+  }
+}
+@media (max-width: 480px) {
+  .login-with {
+    margin: 10px 0;
+  }
+}
+@media (max-width: 320px) {
+  .login-with label {
+    font-size: 15px;
+  }
+}
+/*# sourceMappingURL=styles.css.map */

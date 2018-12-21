@@ -7,7 +7,7 @@ def inTemplateID(view, templateIDs, url=None):
     isURLInPortal = view.context.portal_url.isURLInPortal
     current_template_id = view.context.plone_utils.urlparse(
         url or view.request.getURL()
-    )[2].split('/')[-1]
+    )[2].split('/')[-1].replace("@@", "")
     return current_template_id not in templateIDs or not hasattr(view, 'template')
     
 
