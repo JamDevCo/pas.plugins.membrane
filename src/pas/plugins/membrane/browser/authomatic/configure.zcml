@@ -21,4 +21,13 @@
     permission="plone.ShowToolbar"
     />
 
+  <!-- Login -->
+  <browser:page
+      class=".view.AuthomaticIndentityView"
+      for="*"
+      layer="pas.plugins.membrane.interfaces.ImembraneLayer"
+      name="authomatic-handler"
+      permission="zope2.View"
+  />
+
 </configure>

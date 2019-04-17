@@ -177,28 +177,15 @@ class MemberRegistrationForm(AutoExtensibleForm, form.Form):
                 stored_providers.update(self.providers)
                 annotations[ANNOTATION_KEYS["authomatic"]] = stored_providers
 
-        self.request.response.setCookie('pas.auth.id', user_id)
         mt = api.portal.get_tool('portal_membership')
-        
-        mt.logoutUser(self.request)
-        transaction_note('Logged out ACL Identity')
-        
-        username = base_membrane.getUserName
-        login_name = self.secret_login(username)
-        
-        contextURL = "{}/login_form?__ac_name={}&came_from={}".format(
-            self.context.absolute_url(),
-            login_name,
-            self.came_from
-        )
-        IStatusMessage(self.request).addStatusMessage(
-            _((u"Please log into your account using the "
-               u"credentials associated with {}").format(login_name)),
-            "info"
-        )
-        self.request['__ac_name'] = username
-        self.request.form['__ac_name'] = username
-        self.request.response.redirect(contextURL)
+        userid = base_membrane.getUserId
+        if userid in (self.userID, self.email):
+            self.request.response.redirect(self.came_from)
+        else:
+            transaction_note('Switching ACL Identity')
+            self.context.acl_users.session._setupSession(
+                userid, self.context.REQUEST.RESPONSE)
+            self.request.response.redirect(self.came_from)
 
     def secret_login(self, login_name=None):
         if login_name is not None:
