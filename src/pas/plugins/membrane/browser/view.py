@@ -51,7 +51,7 @@ class MemberRegistrationForm(AutoExtensibleForm, form.Form):
         self.request.set('disable_border', True)
         # call the base class version - this is very important!
         super(MemberRegistrationForm, self).update()
-        
+
     @property
     def membrane_settings(self):
         registry = getUtility(IRegistry)
@@ -79,9 +79,9 @@ class MemberRegistrationForm(AutoExtensibleForm, form.Form):
             contextURL = "{}/login".format(self.context.absolute_url())
             self.request.response.redirect(contextURL)
             return "redirecting"
-            
+
         password = data.get("password")
-        
+
         success = True
         if not self.membranes:
             first_name = data.get("first_name")
@@ -91,7 +91,7 @@ class MemberRegistrationForm(AutoExtensibleForm, form.Form):
                 first_name,
                 last_name
             )
-            
+
             if not first_name or not last_name:
                 fullname = self.identity_current_user.getProperty('fullname')
                 if not fullname:
@@ -157,7 +157,7 @@ class MemberRegistrationForm(AutoExtensibleForm, form.Form):
         super(MemberRegistrationForm, self).updateActions()
         self.actions['save'].addClass("context")
         self.actions['cancel'].addClass("standalone")
-    
+
     def apply_identity_membrane(self):
         user_url = ""
         base_membrane = None
@@ -201,28 +201,27 @@ class MemberRegistrationForm(AutoExtensibleForm, form.Form):
             "*" * num_hide_root,
             domain
         )
-        
+
     def getUserId(self, use_uuid=False):
         if self.use_uuid_as_userid or use_uuid:
             return self.identity_current_user.getUserId()
         else:
             return self.email
-        
-    
+
+
     def __call__(self, **kwargs):
-        
         self.identity_current_user = api.user.get_current()
         self.email = self.identity_current_user.getProperty('email')
-        self.came_from = self.request.form.get(
-            'came_from',
-            None
+        self.came_from = self.request.cookies.get(
+            "login_came_from",
+            self.request.form.get('came_from', None)
         )
-        if not self.came_from or utils.inTemplateID(self, LOGIN_TEMPLATE_IDS):
+        if not self.came_from:
             self.came_from = self.context.absolute_url()
 
         self.membrane_type, self.membrane_role, self.use_uuid_as_userid = \
             self.membrane_settings
-            
+
         try:
             self.userID = self.getUserId(True)
         except AttributeError:
@@ -233,12 +232,12 @@ class MemberRegistrationForm(AutoExtensibleForm, form.Form):
             )
             self.request.response.redirect(self.came_from)
             return
-        
+
         self.providers = utils.getProvidersForUser(self.identity_current_user)
         self.membranes = get_brains_for_email(self.context, self.email)
-        
+
+        logger.info("Redirecting to {}".format(self.came_from))
         if len(self.membranes) > 0:
             self.apply_identity_membrane()
             return
         return super(MemberRegistrationForm, self).__call__(**kwargs)
-        

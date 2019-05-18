@@ -56,5 +56,5 @@ class SuccessfulLoginViewlet(SuccessfulLoginViewletBase):
             raise RuntimeError("Instance %s did not have view %s" % (str(context), name))
     
         view = view.__of__(context)
-    
+
         return view.getDefaultLayout()
